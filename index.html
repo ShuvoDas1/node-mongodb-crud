@@ -7,11 +7,28 @@
 </head>
 <body>
     <h1>This my mongo db </h1>
-    <form action="/addProducct" method="post">
+    <form action="/addProduct" method="post">
         <input type="text" placeholder="Name" name="name">
         <input type="text" placeholder="Price" name="price">
         <input type="text" placeholder="Quantity" name="quantity">
         <button>Submit</button>
     </form>
+    <div id="container">
+
+    </div>
 </body>
+
+<script>
+    fetch('/product')
+    .then(res => res.json())
+    .then(products => {
+        console.log(products);
+        products.forEach(pd => {
+            const container = document.getElementById('container');
+            const item = document.createElement('p');
+            item.innerHTML= `${pd.name} price:${pd.price} quantity: ${pd.quantity}`;
+            container.appendChild(item)
+        });
+    })
+</script>
 </html>
