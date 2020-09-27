@@ -13,15 +13,21 @@ const app = express();
 
 
 client.connect(err => {
-  const collection = client.db("organicdb").collection("products");
-  console.log('connect database successfully');
-  client.close();
+  const productCollection = client.db("organicdb").collection("products");
+  
+  app.post('/addProduct',(req,res) =>{
+      productCollection.insertOne()
+      .then(result =>{
+          
+      })
+  })
+  
 });
 
 
 
 app.get('/',(req,res) => {
-    res.send('hello brother im working')
+    res.sendFile(__dirname + '/index.html')
 })
 
 
